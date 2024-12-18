@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  margin: 20px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+canvas {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+}
+
+#process-button {
+  margin-top: 20px;
+}
