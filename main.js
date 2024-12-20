@@ -20,7 +20,7 @@ imageInput.addEventListener('change', (event) => {
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
       imageData = ctx.getImageData(0, 0, img.width, img.height);
-      sharedBuffer = new SharedArrayBuffer(imageData.data.lenght);
+      sharedBuffer = new SharedArrayBuffer(imageData.data.length);
       const sharedArray = new Uint8ClampedArray(sharedBuffer);
       sharedArray.set(imageData.data);
     };
@@ -38,7 +38,6 @@ processButton.addEventListener('click', () => {
 
   const sharedArray = new Uint8ClampedArray(sharedBuffer);
   const blockSize = Math.ceil(imageData.height / numWorkers);
-  console.log('blockSize: ', blockSize);
 
   for(let i = 0 ; i < numWorkers ; i++) {
     const worker = new Worker('worker.js');
@@ -55,7 +54,7 @@ processButton.addEventListener('click', () => {
     worker.onmessage = () => {
       workers = workers.filter((w) => w !== worker);
       if(workers.length === 0) {
-        const result = Uint8ClampedArray(sharedBuffer);
+        const result = new Uint8ClampedArray(sharedBuffer);
         imageData.data.set(result);
         ctx.putImageData(imageData, 0, 0);
         alert(`processamento concluido`);
